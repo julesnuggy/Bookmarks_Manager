@@ -1,0 +1,5 @@
+# Ignore Figaro application configuration
+/config/application.yml
+
+# Ignore Envyable application configuration
+/config/env.yml

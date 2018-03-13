@@ -1,0 +1,7 @@
+table, tr, td {
+  border: 1px solid;
+}
+
+div#hidden_div {
+  visibility: hidden;
+}

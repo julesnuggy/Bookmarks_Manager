@@ -1,0 +1,41 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/spec/database_spec.rb": [
+
+      ],
+      "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/spec/features/bookmarks_app_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/spec/link_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1520948702
+  }
+}

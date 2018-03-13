@@ -1,0 +1,46 @@
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Krona+One|Lobster|Quicksand|Nunito|Dosis" rel="stylesheet">
+</head>
+
+<html>
+  <body>
+    <h1>My Bookmarked Links</h1>
+
+    <button id="links_button" onclick="show_hide_links()">Show Links</button>
+
+    <div id="hidden_div">
+      <table id="links_table">
+        <% @links.each do |link| %>
+          <tr>
+            <td>
+              <%= link[0] %>
+            </td>
+            <td>
+              <%= link[1] %>
+            </td>
+            <td>
+              <%= link[2] %>
+            </td>
+            <td>
+              <%= link[3] %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  </body>
+</html>
+
+<script>
+function show_hide_links() {
+  var table_div = document.getElementById("hidden_div");
+  if(table_div.style.visibility == "visible") {
+    table_div.style.visibility = "hidden";
+  }
+  else {
+    table_div.style.visibility = "visible";
+  }
+}
+</script>
