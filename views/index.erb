@@ -10,6 +10,7 @@
     <button id="links_button" onclick="show_hide_links()">Show Links</button>
 
     <div id="hidden_div">
+      <h2>Current Bookmarks</h2>
       <table id="links_table">
         <% @links.each do |link| %>
           <tr>
@@ -29,6 +30,14 @@
         <% end %>
       </table>
     </div>
+
+    <div>
+      <h2>Add New Bookmark</h2>
+        <form action="/add-new-bookmark" method="post">
+          <input type="text" name="new_url">
+          <input type="submit" id="add_bookmark_button" value="Add New Bookmark">
+      </form>
+
 
   </body>
 </html>

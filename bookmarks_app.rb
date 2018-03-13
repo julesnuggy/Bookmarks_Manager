@@ -13,12 +13,9 @@ class Bookmarks < Sinatra::Base
     erb(:index)
   end
 
-  get '/add-new-bookmark' do
-    erb(:add_new_link)
-  end
-
-  post '/store_links' do
-    session[:new_url] = params[:new_url]
+  post '/add-new-bookmark' do
+    @new_link = Link.new(params[:new_url])
+    @new_link.add_bookmark
     redirect '/'
   end
 
