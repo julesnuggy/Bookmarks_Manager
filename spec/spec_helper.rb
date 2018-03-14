@@ -15,7 +15,7 @@ Rake.application.load_rakefile
 
 RSpec.configure do |config|
   config.before(:each) do
-    Rake::Task['test_database_setup'].execute
+    Rake::Task['test_database_setup'].invoke
   end
 end
 

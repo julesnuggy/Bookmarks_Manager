@@ -15,13 +15,9 @@ desc 'sets up the test database with 3 links'
 desc 'sets up development and test databases and tables from scratch'
   task :setup do
     p "Creating databases..."
-    connection = PG.connect
-    connection.exec("CREATE DATABASE bookmarks_manager_test;")
-    connection.exec("CREATE DATABASE bookmarks_manager;")
-
-    Db_Connection.setup('bookmark_manager_test', 'julesnuggy')
-    Db_Connection.query("CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR(60));")
-
-    Db_Connection.setup('bookmark_manager', 'julesnuggy')
-    Db_Connection.query("CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR(60));")
+    ['bookmark_manager', 'bookmark_manager_test'].each { |dbname|
+      PG.connect.exec("CREATE DATABASE #{dbname};")
+      Db_Connection.setup(dbname, 'julesnuggy')
+      Db_Connection.query("CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR(60));")
+    }
   end
