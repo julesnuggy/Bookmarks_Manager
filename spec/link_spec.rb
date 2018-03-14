@@ -14,7 +14,7 @@ describe Link do
   describe '#add_bookmark' do
     it 'adds a bookmark to the list' do
       new_link.add_bookmark
-      expect(Link.all.inspect).to include('www.instragram.com')
+      expect(Link.all.inspect).to include('www.instagram.com')
     end
   end
 

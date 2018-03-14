@@ -4,6 +4,45 @@
       "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/spec/database_spec.rb": [
 
       ],
+      "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/spec/db_connection_spec.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/lib/db_connection.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
       "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/spec/features/bookmarks_app_spec.rb": [
         1,
         null,
@@ -52,6 +91,6 @@
         null
       ]
     },
-    "timestamp": 1520958145
+    "timestamp": 1521023137
   }
 }

@@ -11,9 +11,8 @@ class Link
 
   def add_bookmark
     @dbname = (ENV['RACK_ENV'] == "testing") ? 'bookmark_manager_test' : 'bookmark_manager'
-    p "database #{@dbname}"
     @con = PG.connect(dbname: @dbname, user: 'julesnuggy')
-    p @con.exec("INSERT INTO links (url) VALUES ('#{url}');")
+    @con.exec("INSERT INTO links (url) VALUES ('#{url}');")
   end
 
   def self.all
@@ -22,9 +21,5 @@ class Link
     @records = @con.exec("SELECT * FROM links;")
     @all_bookmarks = @records.map { |link| [link['id'], link['url'], link['tags'], link['comments']] }
   end
-
-private
-
-
 
 end
