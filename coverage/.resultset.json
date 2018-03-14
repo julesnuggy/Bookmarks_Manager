@@ -1,9 +1,6 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/spec/database_spec.rb": [
-
-      ],
       "/Users/julesnuggy/Documents/Coding/MA/bookmarks_manager/spec/db_connection_spec.rb": [
         1,
         1,
@@ -60,7 +57,6 @@
         null,
         1,
         null,
-        null,
         1,
         1,
         1,
@@ -79,6 +75,6 @@
         null
       ]
     },
-    "timestamp": 1521035663
+    "timestamp": 1521045995
   }
 }

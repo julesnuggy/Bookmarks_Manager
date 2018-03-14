@@ -1,7 +1,6 @@
 require 'link'
 
 describe Link do
-  #subject(:new_link) { described_class.new("www.instagram.com") }
 
   describe '#all' do
     it 'returns all links' do

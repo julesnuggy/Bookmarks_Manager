@@ -5,8 +5,10 @@ ruby '2.5.0' # Or whatever the latest Ruby version is
 gem 'sinatra'
 gem 'pg'
 gem 'envyable'
+gem 'rake'
 
 group :test do
+  gem 'rake'
   gem 'capybara'
   gem 'rspec'
   gem 'rubocop' # Optional
