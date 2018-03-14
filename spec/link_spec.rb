@@ -1,7 +1,7 @@
 require 'link'
 
 describe Link do
-  subject(:new_link) { described_class.new("www.instagram.com") }
+  #subject(:new_link) { described_class.new("www.instagram.com") }
 
   describe '#all' do
     it 'returns all links' do
@@ -13,7 +13,7 @@ describe Link do
 
   describe '#add_bookmark' do
     it 'adds a bookmark to the list' do
-      new_link.add_bookmark
+      Link.add_bookmark("www.instagram.com")
       expect(Link.all.inspect).to include('www.instagram.com')
     end
   end

@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/base'
 require './lib/link.rb'
+require './lib/db_connection_setup.rb'
 require 'envyable'
 Envyable.load('config/env.yml')
 
@@ -14,8 +15,7 @@ class Bookmarks < Sinatra::Base
   end
 
   post '/add-new-bookmark' do
-    @new_link = Link.new(params[:new_url])
-    @new_link.add_bookmark
+    Link.add_bookmark(params[:new_url])
     redirect '/'
   end
 

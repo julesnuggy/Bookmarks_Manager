@@ -1,24 +1,14 @@
+require_relative './db_connection.rb'
 require 'pg'
 
 class Link
-  attr_reader :records, :id, :url
 
-  def initialize(url, id = nil)
-    @id = id
-    @url = url
-    @all_bookmarks = []
-  end
-
-  def add_bookmark
-    @dbname = (ENV['RACK_ENV'] == "testing") ? 'bookmark_manager_test' : 'bookmark_manager'
-    @con = PG.connect(dbname: @dbname, user: 'julesnuggy')
-    @con.exec("INSERT INTO links (url) VALUES ('#{url}');")
+  def self.add_bookmark(url)
+    Db_Connection.query("INSERT INTO links (url) VALUES ('#{url}');")
   end
 
   def self.all
-    @dbname = (ENV['RACK_ENV'] == "testing") ? 'bookmark_manager_test' : 'bookmark_manager'
-    @con = PG.connect(dbname: @dbname, user: 'julesnuggy')
-    @records = @con.exec("SELECT * FROM links;")
+    @records = Db_Connection.query("SELECT * FROM links;")
     @all_bookmarks = @records.map { |link| [link['id'], link['url'], link['tags'], link['comments']] }
   end
 

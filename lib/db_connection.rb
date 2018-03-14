@@ -10,7 +10,7 @@ class Db_Connection
   def self.connection
     @connection
   end
-  
+
   def self.query(query_string)
     @connection.exec(query_string)
   end
