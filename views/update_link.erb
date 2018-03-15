@@ -1,0 +1,53 @@
+<html>
+  <body>
+    <form action="/do-updates" method="post">
+      <table>
+        <tr>
+          <td>
+            <label>Updating link ID: <%= @update_id %></label>
+          </td>
+        </tr>
+
+          <tr>
+          <td>
+            <label for="update_url_title">Update URL Title: </label>
+          </td>
+          <td>
+            <input type="text" name="update_url_title">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label for="update_url_address">Update URL Address: </label>
+          </td>
+          <td>
+            <input type="text" name="update_url_address">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label for="update_url_tags">Update URL Tags: </label>
+          </td>
+          <td>
+            <input type="text" name="update_url_tags">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label for="update_url_comments">Update URL Comments: </label>
+          </td>
+          <td>
+            <input type="text" name="update_url_comments">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="submit" id="add_bookmark_button" value="Update Bookmark">
+          </td>
+        </tr>
+  </body>
+</html>

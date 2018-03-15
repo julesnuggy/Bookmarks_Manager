@@ -7,9 +7,9 @@ desc 'sets up the test database with 3 links'
     Db_Connection.setup('bookmark_manager_test', 'julesnuggy')
     Db_Connection.query("DELETE FROM links")
     Db_Connection.query("ALTER SEQUENCE links_id_seq RESTART WITH 1")
-    Db_Connection.query("INSERT INTO links (url) VALUES ('www.google.com');")
-    Db_Connection.query("INSERT INTO links (url) VALUES ('www.facebook.com');")
-    Db_Connection.query("INSERT INTO links (url) VALUES ('www.makersacademy.com');")
+    Db_Connection.query("INSERT INTO links (title, url, tags, comments) VALUES ('Google', 'https://www.google.com', 'search', 'knows everything');")
+    Db_Connection.query("INSERT INTO links (title, url) VALUES ('Facebook', 'https://www.facebook.com');")
+    Db_Connection.query("INSERT INTO links (title, url) VALUES ('Makers Academy', 'https://www.makersacademy.com');")
   end
 
 desc 'sets up development and test databases and tables from scratch'

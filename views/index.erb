@@ -5,37 +5,101 @@
 
 <html>
   <body>
+
+    <% flash.keys.each do |type| %>
+      <div class="alert-box flash <%= type %>">
+        <%= flash[type] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+
     <h1>My Bookmarked Links</h1>
 
-    <button id="links_button" onclick="show_hide_links()">Show Links</button>
+    <!-- <button id="links_button" onclick="show_hide_links()">Show Links</button> -->
 
-    <div id="hidden_div">
+    <div>
       <h2>Current Bookmarks</h2>
+
       <table id="links_table">
+        <tr class="header">
+          <td>ID</td>
+          <td>Title</td>
+          <td>Tags</td>
+          <td>Comments</td>
+        </tr>
+
+<form action="/update-link" method="post">
         <% @links.each do |link| %>
           <tr>
             <td>
-              <%= link[0] %>
+              <%= link.id %>
             </td>
             <td>
-              <%= link[1] %>
+              <a href="<%= link.url %>" target="_blank">
+                <%= link.title %>
+              </a>
             </td>
             <td>
-              <%= link[2] %>
+              <%= link.tags %>
             </td>
             <td>
-              <%= link[3] %>
+              <%= link.comments %>
+            </td>
+            <td>
+                <button type="submit" name="update_id" id="update_<%= link.id %>" value="<%= link.id %>">Update Link</button>
             </td>
           </tr>
         <% end %>
+        </form>
       </table>
     </div>
 
     <div>
       <h2>Add New Bookmark</h2>
         <form action="/add-new-bookmark" method="post">
-          <input type="text" name="new_url">
-          <input type="submit" id="add_bookmark_button" value="Add New Bookmark">
+          <table>
+            <tr>
+              <td>
+                <label for="url_title">New URL Title: </label>
+              </td>
+              <td>
+                <input type="text" name="url_title">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label for="url_address">New URL Address: </label>
+              </td>
+              <td>
+                <input type="text" name="url_address">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label for="url_tags">New URL Tags: </label>
+              </td>
+              <td>
+                <input type="text" name="url_tags">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label for="url_comments">New URL Comments: </label>
+              </td>
+              <td>
+                <input type="text" name="url_comments">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="submit" id="add_bookmark_button" value="Add New Bookmark">
+              </td>
+            </tr>
+          </table>
       </form>
 
 

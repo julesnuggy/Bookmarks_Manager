@@ -5,7 +5,7 @@ ruby '2.5.0' # Or whatever the latest Ruby version is
 gem 'sinatra'
 gem 'pg'
 gem 'envyable'
-gem 'rake'
+gem 'sinatra-flash'
 
 group :test do
   gem 'rake'
