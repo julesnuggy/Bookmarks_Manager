@@ -13,7 +13,7 @@ class Link
     @tags = tags
     @comments = comments
   end
-    
+
   def self.all
     @all_bookmarks = []
     @records = Db_Connection.query("SELECT * FROM links;")
@@ -26,10 +26,11 @@ class Link
   end
 
   def self.update(id, title, url, tags, comments)
-    Db_Connection.query("UPDATE links SET title = #{title}, url = #{url}, tags = #{tags}, comments = #{comments} WHERE id = #{id};")
+    Db_Connection.query("UPDATE links SET title = '#{title}', url = '#{url}', tags = '#{tags}', comments = '#{comments}' WHERE id = #{id};")
   end
 
-  def self.delete()
+  def self.delete(id)
+    Db_Connection.query("DELETE FROM links WHERE id = #{id};")
   end
 
   def self.find()

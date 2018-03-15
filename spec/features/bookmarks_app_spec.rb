@@ -34,7 +34,10 @@ describe Bookmarks do
       click_on 'Add New Bookmark'
 
       find_by_id('update_5').click
-      fill_in 'update_tags', with: 'PSQL Tutorial'
+      fill_in 'updated_title', with: 'PSQL Tutorial'
+      fill_in 'updated_address', with: 'https://www.postgresqltutorial.com'
+      fill_in 'updated_tags', with: 'PSQL tag'
+      click_on 'Update Bookmark'
     end
 
     scenario 'DELETES a link' do

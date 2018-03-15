@@ -28,7 +28,6 @@
           <td>Comments</td>
         </tr>
 
-<form action="/update-link" method="post">
         <% @links.each do |link| %>
           <tr>
             <td>
@@ -46,11 +45,16 @@
               <%= link.comments %>
             </td>
             <td>
-                <button type="submit" name="update_id" id="update_<%= link.id %>" value="<%= link.id %>">Update Link</button>
+              <form action="/update-link" method="post">
+                <button type="submit" name="change_link_id" id="update_<%= link.id %>" value="<%= link.id %>">Update Link</button>
+              </form>
+
+              <form action="/delete-link" method="post">
+                <button type="submit" name="change_link_id" id="delete_<%= link.id %>" value="<%= link.id %>">Delete Link</button>
+              </form>
             </td>
           </tr>
         <% end %>
-        </form>
       </table>
     </div>
 

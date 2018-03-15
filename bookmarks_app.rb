@@ -42,12 +42,33 @@ class Bookmarks < Sinatra::Base
   end
 
   post '/update-link' do
-    @update_id = params[:update_id]
+    @update_id = params[:change_link_id]
     erb(:update_link)
   end
 
   post '/do-updates' do
-    #STUFF
+    begin
+      updated_id = params[:updated_id]
+      updated_title = params[:updated_title]
+      updated_address = URI.parse(params[:updated_address])
+      updated_tags = params[:updated_tags]
+      updated_comments = params[:updated_comments]
+    rescue
+      flash[:invalid_bookmark] = "Invalid url link T_T"
+      redirect '/'
+    end
+
+    if updated_address.kind_of?(URI::HTTP)
+      Link.update(updated_id, updated_title, updated_address, updated_tags, updated_comments)
+      redirect '/'
+    end
+    redirect '/'
+
+  end
+
+  post '/delete-link' do
+    @delete_id = params[:change_link_id]
+    Link.delete(@delete_id)
     redirect '/'
   end
 

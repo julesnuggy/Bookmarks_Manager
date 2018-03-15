@@ -4,43 +4,46 @@
       <table>
         <tr>
           <td>
-            <label>Updating link ID: <%= @update_id %></label>
+            <label for"updated_id">Updating link ID:</label>
+          </td>
+          <td>
+            <input type="text" name="updated_id" value="<%= @update_id %>">
           </td>
         </tr>
 
           <tr>
           <td>
-            <label for="update_url_title">Update URL Title: </label>
+            <label for="updated_title">Update URL Title: </label>
           </td>
           <td>
-            <input type="text" name="update_url_title">
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <label for="update_url_address">Update URL Address: </label>
-          </td>
-          <td>
-            <input type="text" name="update_url_address">
+            <input type="text" name="updated_title" id="updated_title">
           </td>
         </tr>
 
         <tr>
           <td>
-            <label for="update_url_tags">Update URL Tags: </label>
+            <label for="updated_address">Update URL Address: </label>
           </td>
           <td>
-            <input type="text" name="update_url_tags">
+            <input type="text" name="updated_address" id="updated_address">
           </td>
         </tr>
 
         <tr>
           <td>
-            <label for="update_url_comments">Update URL Comments: </label>
+            <label for="updated_tags">Update URL Tags: </label>
           </td>
           <td>
-            <input type="text" name="update_url_comments">
+            <input type="text" name="updated_tags" id="updated_tags">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label for="updated_comments">Update URL Comments: </label>
+          </td>
+          <td>
+            <input type="text" name="updated_comments" id="updated_comments">
           </td>
         </tr>
 

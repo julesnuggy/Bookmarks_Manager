@@ -18,8 +18,29 @@ describe Link do
 
   describe '#add_bookmark' do
     it 'adds a bookmark to the list' do
-      Link.add_bookmark("Instagram", "https://www.instagram.com", nil, nil)
+      Link.add_bookmark("Innstagram", "https://www.instagram.com", nil, nil)
       expect(Link.all.inspect).to include('https://www.instagram.com')
+    end
+  end
+
+  describe '#update' do
+    it 'updates a bookmark' do
+      Link.update(7, "Instagram", "https://www.instagram.com", "social media", "PHOTOS")
+      expect(Link.all.inspect).to include("PHOTOS")
+      expect(Link.all.inspect).to include("Instagram")
+    end
+  end
+
+  describe '#delete' do
+    it 'deletes a bookmark' do
+      Link.delete(7)
+      expect(Link.all.inspect).not_to include('https://www.instagram.com')
+    end
+  end
+
+  describe '#find' do
+    it '' do
+
     end
   end
 
