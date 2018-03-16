@@ -40,7 +40,8 @@ describe Link do
 
   describe '#search' do
     it 'finds all bookmarks matching the search terms' do
-      expect(Link.search('Makers Academy')).to be_truthy
+      result = Link.search('Makers Academy')
+      expect(result[0].url).to include('https://www.makersacademy.com')
     end
   end
 
