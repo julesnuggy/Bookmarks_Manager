@@ -1,23 +1,29 @@
+require './lib/link.rb'
+require './lib/db_connection_setup.rb'
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/flash'
-require './lib/link.rb'
-require './lib/db_connection_setup.rb'
-require 'envyable'
 require 'uri'
+require 'rake' # For use of Rack's HTTP verbs
+require 'envyable'
 Envyable.load('config/env.yml')
 
 class Bookmarks < Sinatra::Base
   enable :sessions
   set :session_secret, 'My Secret Session'
   register Sinatra::Flash
+  set :method_override, true
 
   get '/' do
+    redirect '/links'
+  end
+
+  get '/links' do
     @links = Link.all
     erb(:index)
   end
 
-  post '/add-new-bookmark' do
+  post '/links/add' do
 
     begin
       url_title = params[:url_title]
@@ -26,7 +32,7 @@ class Bookmarks < Sinatra::Base
       url_comments = params[:url_comments]
     rescue
       flash[:invalid_bookmark] = "Add failed: invalid url link"
-      redirect '/'
+      redirect '/links'
     end
 
     if url_address.kind_of?(URI::HTTP)
@@ -38,10 +44,10 @@ class Bookmarks < Sinatra::Base
 
     end
 
-    redirect '/'
+    redirect '/links'
   end
 
-  post '/do-updates' do
+  patch '/links/update' do
     begin
       updated_id = params[:updated_id]
       updated_title = params[:updated_title]
@@ -50,7 +56,7 @@ class Bookmarks < Sinatra::Base
       updated_comments = params[:updated_comments]
     rescue
       flash[:warning] = "Update failed: invalid url link"
-      redirect '/'
+      redirect '/links'
     end
 
     if updated_address.kind_of?(URI::HTTP)
@@ -61,18 +67,18 @@ class Bookmarks < Sinatra::Base
 
     end
 
-    redirect '/'
+    redirect '/links'
 
   end
 
-  post '/delete-link' do
+  delete '/links/delete' do
     @delete_id = params[:change_link_id]
     flash[:warning] = "Bookmark deleted"
     Link.delete(@delete_id)
-    redirect '/'
+    redirect '/links'
   end
 
-  post '/search' do
+  post '/links/search' do
     @search_query = params[:search_query]
     @links = Link.search(@search_query)
     erb(:index)

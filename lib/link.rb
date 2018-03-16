@@ -33,9 +33,9 @@ class Link
     Db_Connection.query("DELETE FROM links WHERE id = #{id};")
   end
 
-  def self.search(search)
+  def self.search(query)
     @search_result = []
-    @search_query = Db_Connection.query("SELECT * FROM links WHERE title = '#{search}';")
+    @search_query = Db_Connection.query("SELECT * FROM links WHERE title = '#{query}';")
     @search_query.map { |link| @search_result << Link.new(link['id'], link['title'], link['url'], link['tags'], link['comments']) }
     @search_result
   end

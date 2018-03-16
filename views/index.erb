@@ -1,5 +1,5 @@
 <head>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/links/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Krona+One|Lobster|Quicksand|Nunito|Dosis" rel="stylesheet">
 </head>
 
@@ -16,12 +16,12 @@
     <h1>My Bookmarks</h1>
 
       <div class="full_width_box inline">
-        <a href='/'><button id="home_btn" class="deafult_btn">Home</button></a>
+        <a href='/links'><button id="home_btn" class="deafult_btn">Home</button></a>
         <!-- <button id="add_bm_btn" class="default_btn" onclick="show_hide_el('add_bm')">Add Bookmark</button> -->
 
-        <form action="/search" method="post" class="inline">
+        <form action="/links/search" method="post" class="inline">
           <label for="search_bar">Search: </label>
-          <input type="text" name="search_query" id="search_bar">
+          <input do="text" name="search_query" id="search_bar">
           <input type="submit" name="search_submit" value="Find">
         </form>
       </div>
@@ -58,7 +58,8 @@
               <td class="center_<%= idx %>">
                 <button name="change_link_id" class="cell_btn" id="update_<%= link.id %>" onclick="update_details(<%= idx %>)">Update Link</button>
 
-                <form action="/delete-link" method="post">
+                <form action="/links/delete" method="post">
+                  <input type="hidden" id="hidden" name="_method" value="delete">
                   <button type="submit" name="change_link_id" class="cell_btn" id="delete_<%= link.id %>" value="<%= link.id %>">Delete Link</button>
                 </form>
               </td>
@@ -69,7 +70,7 @@
       <div class="v-container hidden_div">
         <div id="add_bm" class="hidden_div sub_box">
           <h2>Add New Bookmark</h2>
-            <form action="/add-new-bookmark" method="post">
+            <form action="/links/add" method="post">
               <table>
                 <tr>
                   <td>
@@ -119,7 +120,7 @@
         <div id="update_bm" class="hidden_div sub_box">
           <h2>Update Bookmark</h2>
 
-          <form action="/do-updates" method="post">
+          <form action="/links/update" method="post">
             <table>
               <tr>
                 <td>
@@ -168,6 +169,7 @@
 
               <tr>
                 <td>
+                  <input type="hidden" id="hidden" name="_method" value="patch">
                   <input type="submit" id="add_bookmark_button" value="Update Bookmark">
                 </td>
               </tr>

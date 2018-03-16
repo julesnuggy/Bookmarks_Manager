@@ -6,6 +6,7 @@ gem 'sinatra'
 gem 'pg'
 gem 'envyable'
 gem 'sinatra-flash'
+gem 'rake'
 
 group :test do
   gem 'rake'

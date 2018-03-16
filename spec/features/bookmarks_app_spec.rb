@@ -3,7 +3,7 @@ require_relative '../../bookmarks_app.rb'
 
 describe Bookmarks do
   before do
-    visit ('/')
+    visit ('/links')
   end
 
   feature 'CRUD:' do
