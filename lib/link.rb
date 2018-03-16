@@ -16,7 +16,7 @@ class Link
 
   def self.all
     @all_bookmarks = []
-    @records = Db_Connection.query("SELECT * FROM links;")
+    @records = Db_Connection.query("SELECT * FROM links ORDER BY id ASC;")
     @records.map { |link| @all_bookmarks << Link.new(link['id'], link['title'], link['url'], link['tags'], link['comments']) }
     @all_bookmarks
   end
@@ -33,7 +33,11 @@ class Link
     Db_Connection.query("DELETE FROM links WHERE id = #{id};")
   end
 
-  def self.find()
+  def self.search(search)
+    @search_result = []
+    @search_query = Db_Connection.query("SELECT * FROM links WHERE title = '#{search}';")
+    @search_query.map { |link| @search_result << Link.new(link['id'], link['title'], link['url'], link['tags'], link['comments']) }
+    @search_result
   end
 
 end

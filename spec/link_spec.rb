@@ -38,9 +38,9 @@ describe Link do
     end
   end
 
-  describe '#find' do
-    it '' do
-
+  describe '#search' do
+    it 'finds all bookmarks matching the search terms' do
+      expect(Link.search('Makers Academy')).to be_truthy
     end
   end
 

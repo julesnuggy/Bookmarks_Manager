@@ -42,7 +42,7 @@ describe Bookmarks do
 
     scenario 'DELETES a link' do
       find_by_id('delete_5').click
-      click_on 'Confirm Delete'
+      expect(page).not_to have_content ('PSQL Tutorial')
     end
 
   end
@@ -52,7 +52,7 @@ describe Bookmarks do
       fill_in 'url_title', with: 'Linux'
       fill_in 'url_address', with: 'https://www.linux.com'
       click_on 'Add New Bookmark'
-      expect(page).to have_content 'Bookmark added ^_^'
+      expect(page).to have_content 'Bookmark added'
     end
 
     scenario 'raises an error message in flash for incorrect links' do
@@ -64,7 +64,7 @@ describe Bookmarks do
     scenario 'raises an error message in flash for invalid links' do
       fill_in 'url_address', with: 'http://www twitter.com'
       click_on 'Add New Bookmark'
-      expect(page).to have_content 'Invalid url link T_T'
+      expect(page).to have_content 'Add failed: invalid url link'
     end
   end
 

@@ -7,117 +7,205 @@
   <body>
 
     <% flash.keys.each do |type| %>
-      <div class="alert-box flash <%= type %>">
+      <div id="flash_alert" class="alert-box flash <%= type %> alert-dismissable">
         <%= flash[type] %>
-        <a href="#" class="close">&times;</a>
+        <a href="#" onclick="show_hide_el('flash_alert')" class="close">&times;</a>
       </div>
     <% end %>
 
-    <h1>My Bookmarked Links</h1>
+    <h1>My Bookmarks</h1>
 
-    <!-- <button id="links_button" onclick="show_hide_links()">Show Links</button> -->
+      <div class="full_width_box inline">
+        <a href='/'><button id="home_btn" class="deafult_btn">Home</button></a>
+        <button id="add_bm_btn" class="default_btn" onclick="show_hide_el('add_bm')">Add Bookmark</button>
+        <button id="update_bm_btn" class="default_btn" onclick="show_hide_el('update_bm')">Update Bookmark</button>
 
-    <div>
-      <h2>Current Bookmarks</h2>
+        <form action="/search" method="post" class="inline">
+          <label for="search_box">Search: </label>
+          <input type="text" name="search_query" id="search_box">
+          <input type="submit" name="search_submit" value="Find">
+        </form>
+      </div>
 
-      <table id="links_table">
-        <tr class="header">
-          <td>ID</td>
-          <td>Title</td>
-          <td>Tags</td>
-          <td>Comments</td>
-        </tr>
 
-        <% @links.each do |link| %>
-          <tr>
-            <td>
-              <%= link.id %>
-            </td>
-            <td>
-              <a href="<%= link.url %>" target="_blank">
-                <%= link.title %>
-              </a>
-            </td>
-            <td>
-              <%= link.tags %>
-            </td>
-            <td>
-              <%= link.comments %>
-            </td>
-            <td>
-              <form action="/update-link" method="post">
-                <button type="submit" name="change_link_id" id="update_<%= link.id %>" value="<%= link.id %>">Update Link</button>
-              </form>
-
-              <form action="/delete-link" method="post">
-                <button type="submit" name="change_link_id" id="delete_<%= link.id %>" value="<%= link.id %>">Delete Link</button>
-              </form>
-            </td>
+    <div class="container">
+      <div class="main_box">
+        <h2>Saved Bookmarks</h2>
+        <table id="links_table">
+          <tr class="header">
+            <td>ID</td>
+            <td>Title</td>
+            <td>Tags</td>
+            <td>Comments</td>
+            <td>Actions</td>
           </tr>
-        <% end %>
-      </table>
+
+          <% @links.each_with_index do |link, idx| %>
+            <tr>
+              <td id="id_<%= idx %>">
+                <%= link.id %>
+              </td>
+              <td>
+                <a id="title_<%= idx %>" href="<%= link.url %>" target="_blank">
+                  <%= link.title %>
+                </a>
+              </td>
+              <td id="tags_<%= idx %>">
+                <%= link.tags %>
+              </td>
+              <td id="comments_<%= idx %>">
+                <%= link.comments %>
+              </td>
+              <td class="center_<%= idx %>">
+                <button name="change_link_id" class="cell_btn" id="update_<%= link.id %>" onclick="update_details(<%= idx %>)">Update Link</button>
+
+                <form action="/delete-link" method="post">
+                  <button type="submit" name="change_link_id" class="cell_btn" id="delete_<%= link.id %>" value="<%= link.id %>">Delete Link</button>
+                </form>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="v-container hidden_div">
+        <div id="add_bm" class="hidden_div sub_box">
+          <h2>Add New Bookmark</h2>
+            <form action="/add-new-bookmark" method="post">
+              <table>
+                <tr>
+                  <td>
+                    <label for="url_title">New URL Title: </label>
+                  </td>
+                  <td>
+                    <input type="text" name="url_title">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <label for="url_address">New URL Address: </label>
+                  </td>
+                  <td>
+                    <input type="text" name="url_address">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <label for="url_tags">New URL Tags: </label>
+                  </td>
+                  <td>
+                    <input type="text" name="url_tags">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <label for="url_comments">New URL Comments: </label>
+                  </td>
+                  <td>
+                    <input type="text" name="url_comments">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input type="submit" id="add_bookmark_button" value="Add New Bookmark">
+                  </td>
+                </tr>
+              </table>
+          </form>
+        </div>
+
+        <div id="update_bm" class="hidden_div sub_box">
+          <h2>Update Bookmark</h2>
+
+          <form action="/do-updates" method="post">
+            <table>
+              <tr>
+                <td>
+                  <label for"updated_id">Updating link ID:</label>
+                </td>
+                <td>
+                  <input type="text" id="updated_id" name="updated_id" value="<%= @update_id %>">
+                </td>
+              </tr>
+
+                <tr>
+                <td>
+                  <label for="updated_title">Update URL Title: </label>
+                </td>
+                <td>
+                  <input type="text" id="updated_title" name="updated_title">
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label for="updated_address">Update URL Address: </label>
+                </td>
+                <td>
+                  <input type="text" id="updated_address" name="updated_address">
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label for="updated_tags">Update URL Tags: </label>
+                </td>
+                <td>
+                  <input type="text" id="updated_tags" name="updated_tags">
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label for="updated_comments">Update URL Comments: </label>
+                </td>
+                <td>
+                  <input type="text" id="updated_comments" name="updated_comments">
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <input type="submit" id="add_bookmark_button" value="Update Bookmark">
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <h2>Add New Bookmark</h2>
-        <form action="/add-new-bookmark" method="post">
-          <table>
-            <tr>
-              <td>
-                <label for="url_title">New URL Title: </label>
-              </td>
-              <td>
-                <input type="text" name="url_title">
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label for="url_address">New URL Address: </label>
-              </td>
-              <td>
-                <input type="text" name="url_address">
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label for="url_tags">New URL Tags: </label>
-              </td>
-              <td>
-                <input type="text" name="url_tags">
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label for="url_comments">New URL Comments: </label>
-              </td>
-              <td>
-                <input type="text" name="url_comments">
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <input type="submit" id="add_bookmark_button" value="Add New Bookmark">
-              </td>
-            </tr>
-          </table>
-      </form>
-
 
   </body>
 </html>
 
 <script>
-function show_hide_links() {
-  var table_div = document.getElementById("hidden_div");
-  if(table_div.style.visibility == "visible") {
-    table_div.style.visibility = "hidden";
+
+  function show_hide_el(el_id) {
+    var selected_el = document.getElementById(el_id);
+    if(selected_el.style.display == "none") {
+      selected_el.style.display = "block";
+    }
+    else {
+      selected_el.style.display = "none";
+    }
   }
-  else {
-    table_div.style.visibility = "visible";
+
+  function update_details(el_idx) {
+    var elements = ["id", "title", "tags", "comments"];
+    for (var i = 0; i < elements.length; i++) {
+      var origin_el = document.getElementById(elements[i] + "_" + el_idx).innerHTML;
+      var target_el = document.getElementById("updated_" + elements[i]);
+      target_el.value = origin_el.trim();
+    }
+    origin_address = document.getElementById("title_" + el_idx).href;
+    target_address = document.getElementById("updated_address");
+    target_address.value = origin_address.trim()
   }
-}
+
+  function encode_uri(source) {
+    encodeURIComponent(source)
+  }
 </script>
