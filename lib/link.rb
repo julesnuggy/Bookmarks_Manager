@@ -40,4 +40,7 @@ class Link
     @search_result
   end
 
+  def self.comment(comm_text, link_id)
+    Db_Connection.query("INSERT INTO comments (text, link_id) VALUES ('#{comm_text}', #{link_id});")
+  end
 end

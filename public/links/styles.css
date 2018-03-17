@@ -11,6 +11,11 @@ div#hidden_diV{
   display: none;
 }
 
+h2 {
+  font-size: 20px;
+  margin: 5px 0px 5px 0px;
+}
+
 .header {
   font-weight: bold;
   text-align: center;

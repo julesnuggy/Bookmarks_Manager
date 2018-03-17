@@ -62,13 +62,17 @@
                   <input type="hidden" id="hidden" name="_method" value="delete">
                   <button type="submit" name="change_link_id" class="cell_btn" id="delete_<%= link.id %>" value="<%= link.id %>">Delete Link</button>
                 </form>
+
+                <form action="/links/comment" method="post">
+                  <button type="submit" name="add_comment" class="cell_btn" id="add_comment_<%= link.id %>">Add Comment</button>
+                </form>
               </td>
             </tr>
           <% end %>
         </table>
       </div>
-      <div class="v-container hidden_div">
-        <div id="add_bm" class="hidden_div sub_box">
+      <div class="v-container">
+        <div id="add_bm" class="sub_box">
           <h2>Add New Bookmark</h2>
             <form action="/links/add" method="post">
               <table>
@@ -117,7 +121,7 @@
           </form>
         </div>
 
-        <div id="update_bm" class="hidden_div sub_box">
+        <div id="update_bm" class="sub_box">
           <h2>Update Bookmark</h2>
 
           <form action="/links/update" method="post">
@@ -177,6 +181,11 @@
           </form>
         </div>
       </div>
+    </div>
+
+    <div class="hidden_div main_box">
+      <h2>Comments</h2>
+      <textarea rows="10" cols="100"> </textarea>
     </div>
 
   </body>

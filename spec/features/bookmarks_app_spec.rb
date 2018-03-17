@@ -70,11 +70,24 @@ describe Bookmarks do
 
   feature 'opens a webpage in a new window' do
     scenario 'when the URL is clicked on' do
-      #expect(window_opened_by { click_on 'https://www.google.com' }).to have_content
-      within_window window_opened_by { click_on 'Makers Academy' }
-      save_and_open_page
-      expect(page).to have_content 'LEARN TO CODE IN 12 WEEKS'
+      assert page.driver.browser.window_handles.size == 2
     end
   end
+
+  feature 'commenting' do
+    scenario 'user can add a comment to a link' do
+      click_on 'add_comment_2'
+      fill_in 'comment_box', with:"This is amazing"
+      click_on 'Submit Comment'
+      expect(page).to have_content "This is amazing"
+    end
+
+    scenario 'user can edit their own comment' do
+    end
+
+    scenario 'user can delete their own comment' do
+    end
+  end
+
 
 end
